@@ -1,13 +1,18 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+import FunctionsContext from "../context";
 
 export default class Item extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  static contextType = FunctionsContext;
+
   render() {
     const { id, name, price, quantity } = this.props;
+
+    const { handleIncrease, handleDecrease } = this.context;
 
     return (
       <div className="item" data-id={id}>
@@ -18,13 +23,13 @@ export default class Item extends React.Component {
         <div className="item__qty-container">
           <p className="item__qty">Quantity: {quantity}</p>
           <button
-            onClick={() => this.props.handleIncrease(id)}
+            onClick={() => handleIncrease(id)}
             className="item__increase-qty"
           >
             +
           </button>
           <button
-            onClick={() => this.props.handleDecrease(id)}
+            onClick={() => handleDecrease(id)}
             className="item__decrease-qty"
           >
             -

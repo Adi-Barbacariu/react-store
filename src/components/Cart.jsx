@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+import FunctionsContext from "../context";
 import Item from "./Item";
 
 export default class Cart extends React.Component {
@@ -7,12 +8,15 @@ export default class Cart extends React.Component {
     super(props);
   }
 
+  static contextType = FunctionsContext;
+
   render() {
-    const { items } = this.props;
+    const { cartItems } = this.context;
+
     let totalPrice = 0;
     let totalItems = 0;
 
-    if (items.length === 0) {
+    if (cartItems.length === 0) {
       return (
         <div className="cart">
           <p className="cart__title">Cart</p>
@@ -26,14 +30,12 @@ export default class Cart extends React.Component {
         <p className="cart__title">Cart</p>
         <div className="cart__container">
           <div className="cart__items">
-            {items.map((current) => {
+            {cartItems.map((current) => {
               totalPrice += current.quantity * current.price;
               totalItems += current.quantity;
 
               return (
                 <Item
-                  handleIncrease={this.props.handleIncrease}
-                  handleDecrease={this.props.handleDecrease}
                   key={current.id}
                   id={current.id}
                   name={current.name}

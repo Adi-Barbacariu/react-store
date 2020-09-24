@@ -1,14 +1,19 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
 import image from "../img/pexels-cottonbro-4066293.jpg";
+import FunctionsContext from "../context";
 
 export default class Product extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  static contextType = FunctionsContext;
+
   render() {
-    const { id, name, price, handleClick } = this.props;
+    const { id, name, price } = this.props;
+
+    const { handleClick } = this.context;
 
     return (
       <div className="product" data-id={id}>

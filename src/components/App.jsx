@@ -1,11 +1,14 @@
 import React from "react";
 import Footer from "./Footer";
 import Navigation from "./Navigation";
+import FunctionsContext from "../context";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = { cart: [] };
+
     this.handleClick = this.handleClick.bind(this);
     this.handleIncrease = this.handleIncrease.bind(this);
     this.handleDecrease = this.handleDecrease.bind(this);
@@ -64,15 +67,17 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Navigation
-          handleClick={this.handleClick}
-          handleIncrease={this.handleIncrease}
-          handleDecrease={this.handleDecrease}
-          cart={this.state.cart}
-        />
+      <FunctionsContext.Provider
+        value={{
+          handleClick: this.handleClick,
+          handleIncrease: this.handleIncrease,
+          handleDecrease: this.handleDecrease,
+          cartItems: this.state.cart,
+        }}
+      >
+        <Navigation />
         <Footer />
-      </React.Fragment>
+      </FunctionsContext.Provider>
     );
   }
 }

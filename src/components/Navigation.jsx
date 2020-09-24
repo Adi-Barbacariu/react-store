@@ -4,15 +4,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Store from "./Store";
 import Cart from "./Cart";
 
-/* export default function Navigation(props) {
-  return (
-    <div className="nav">
-      <a className="nav__store">Store</a>
-      <a className="nav__cart">Cart</a>
-    </div>
-  );
-} */
-
 export default function Navigation(props) {
   return (
     <Router>
@@ -27,17 +18,13 @@ export default function Navigation(props) {
 
       <Switch>
         <Route exact path="/">
-          <Store handleClick={props.handleClick} />
+          <Store />
         </Route>
         <Route path="/store">
-          <Store handleClick={props.handleClick} />
+          <Store />
         </Route>
         <Route path="/cart">
-          <Cart
-            items={props.cart}
-            handleIncrease={props.handleIncrease}
-            handleDecrease={props.handleDecrease}
-          />
+          <Cart />
         </Route>
       </Switch>
     </Router>

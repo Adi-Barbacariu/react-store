@@ -12,7 +12,7 @@ export default class Store extends React.Component {
     return (
       <div className="store">
         <Header />
-        <Products handleClick={this.props.handleClick} />
+        <Products />
       </div>
     );
   }
