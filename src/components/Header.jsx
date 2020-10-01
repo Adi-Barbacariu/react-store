@@ -1,12 +1,15 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+import { WithContext } from "./WithContext";
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    const { productsNumber } = this.props;
+
     return (
       <React.Fragment>
         <div className="header">
@@ -15,7 +18,7 @@ export default class Header extends React.Component {
         </div>
         <div className="header__img"></div>
         <div className="header__search">
-          <p className="header__text">8 products</p>
+          <p className="header__text">{productsNumber} products</p>
           <input
             className="header__input"
             type="text"
@@ -27,3 +30,5 @@ export default class Header extends React.Component {
     );
   }
 }
+
+export default WithContext(Header);

@@ -7,11 +7,12 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { cart: [] };
+    this.state = { cart: [], productsNumber: 0 };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleIncrease = this.handleIncrease.bind(this);
     this.handleDecrease = this.handleDecrease.bind(this);
+    this.handleProductsNumber = this.handleProductsNumber.bind(this);
   }
 
   handleClick(id, name, price) {
@@ -65,6 +66,10 @@ export default class App extends React.Component {
     this.setState({ cart: newCart });
   }
 
+  handleProductsNumber(products) {
+    this.setState({ productsNumber: products });
+  }
+
   render() {
     return (
       <FunctionsContext.Provider
@@ -72,7 +77,9 @@ export default class App extends React.Component {
           handleClick: this.handleClick,
           handleIncrease: this.handleIncrease,
           handleDecrease: this.handleDecrease,
+          handleProductsNumber: this.handleProductsNumber,
           cartItems: this.state.cart,
+          productsNumber: this.state.productsNumber,
         }}
       >
         <Navigation />
