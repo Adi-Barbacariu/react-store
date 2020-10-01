@@ -53,9 +53,15 @@
 .header__input {
   border: none;
   background-color: rgba(75, 75, 75, 0.3);
-  color: #fff;
   padding: 10px 5px;
   font-size: 18px;
+  width: 250px;
+  transition: width linear 0.15s;
+  color: #000;
+}
+
+.header__input:focus {
+  width: 350px;
 }
 
 .products {
@@ -77,6 +83,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr max-content;
   cursor: pointer;
+  user-select: none;
 }
 
 .product__price {
@@ -180,7 +187,7 @@
   width: 250px;
   padding: 10px 15px;
   justify-content: center;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .cart__total-price {

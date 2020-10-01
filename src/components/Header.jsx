@@ -20,6 +20,7 @@ class Header extends React.Component {
         <div className="header__search">
           <p className="header__text">{productsNumber} products</p>
           <input
+            onChange={this.props.handleInputChange}
             className="header__input"
             type="text"
             name="search"

@@ -22,13 +22,25 @@ class Products extends React.Component {
     this.setState({ items: data });
   }
 
+  filterItems(arr, input) {
+    return arr.filter((current) => current.name.includes(input.toLowerCase()));
+  }
+
   render() {
-    const { items } = this.state;
+    let { items } = this.state;
+    const { input } = this.props;
+
+    if (input !== "") {
+      items = this.filterItems(items, input);
+
+      this.props.handleProductsNumber(items.length);
+    }
 
     return (
       <div className="products">
         {items.map((current) => (
           <Product
+            key={current.id}
             id={current.id}
             name={current.name}
             price={current.price}
