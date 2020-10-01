@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "blue t-shirt",
+      "price": "30",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/fe/7a/fe7ae3a137e25ffdffccc8658948d81793b43447.jpg],origin[dam],category[MEN_TSHIRTSTANKS_POLO],type[DESCRIPTIVESTILLLIFE],res[m],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+      "id": 2,
+      "name": "white t-shirt",
+      "price": "50",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/b2/35/b235b6a206fae1106c4f9f207b77cba593a80407.jpg],origin[dam],category[men_tshirtstanks_shortsleeve],type[LOOKBOOK],res[m],hmver[1]&call=url[file:/product/main]"
+    },
+    {
+      "id": 3,
+      "name": "slim fit jeans",
+      "price": "90",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/95/c9/95c9bbd1fe9e67e62a12b5b5392ba6393fd80f77.jpg],origin[dam],category[men_jeans_slimstraight],type[LOOKBOOK],res[m],hmver[1]&call=url[file:/product/main]"
+    },
+    {
+      "id": 4,
+      "name": "leather jacket",
+      "price": "150",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/4f/d4/4fd461d3a48e8eb4a847893a8f2818e174aadf5d.jpg],origin[dam],category[men_jacketscoats_jackets],type[LOOKBOOK],res[m],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+      "id": 5,
+      "name": "vest",
+      "price": "70",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/cd/f8/cdf8362d64bd8ca62da6c3e5fef85bab1cda5bfb.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[m],hmver[1]&call=url[file:/product/main]"
+    },
+    {
+      "id": 6,
+      "name": "scarf",
+      "price": "25",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/23/42/2342b8dbb0519a82d6ffbed2b22166b2cdcaea08.jpg],origin[dam],category[men_accessories_scarves],type[DESCRIPTIVESTILLLIFE],res[m],hmver[1]&call=url[file:/product/main]"
+    },
+    {
+      "id": 7,
+      "name": "rain coat",
+      "price": "175",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/95/e3/95e39dc5abf4acc2fcdd04909c341552d5fb26c1.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[s],hmver[1]&call=url[file:/product/main]"
+    },
+    {
+      "id": 8,
+      "name": "chelsea boots",
+      "price": "180",
+      "image": "https://lp2.hm.com/hmgoepprod?set=quality[79],source[/35/65/3565dd8dcccd7d389b67e2786f2d83e0313b8631.jpg],origin[dam],category[men_shoes_boots],type[DESCRIPTIVESTILLLIFE],res[m],hmver[2]&call=url[file:/product/main]"
+    }
+  ]
+}

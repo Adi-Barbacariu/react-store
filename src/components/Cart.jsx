@@ -2,6 +2,7 @@
 import React from "react";
 import Item from "./Item";
 import { WithContext } from "./WithContext";
+import MotionButton from "./MotionButton";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -70,12 +71,12 @@ class Cart extends React.Component {
             <div className="cart__check">
               <p className="cart__total-items">Items: {totalItems}</p>
               <p className="cart__total-price">Total: ${totalPrice}</p>
-              <button
+              <MotionButton
                 onClick={this.handleCheckout}
                 className="cart__checkout-btn"
               >
                 CHECKOUT
-              </button>
+              </MotionButton>
             </div>
           </div>
         </div>
@@ -83,7 +84,7 @@ class Cart extends React.Component {
         <div className={`modal__wrapper ${this.state.modal ? "" : "hide"}`}>
           <div className="modal-checkout">
             <h2 className="modal__title">Checkout</h2>
-            <button className="modal__btn">BUY</button>
+            <MotionButton className="modal__btn">BUY</MotionButton>
           </div>
         </div>
       </>
