@@ -1,14 +1,18 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
-import Item from "./Item";
 import { WithContext } from "./WithContext";
 import MotionButton from "./MotionButton";
+import Modal from "./Modal";
+import CartItems from "./CartItems";
+import { deepCompare } from "../compare2Objs";
+import CartCheckout from "./CartCheckout";
+import { calculateCartData } from "../calcCartData";
 
 class Cart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false };
+    this.state = { modal: false, cartData: { totalPrice: 0, totalItems: 0 } };
   }
 
   handleCheckout = () => {
@@ -28,13 +32,27 @@ class Cart extends React.Component {
         this.handleCheckout();
       }
     });
+
+    const { cartItems } = this.props;
+
+    const cartData = calculateCartData(cartItems);
+
+    this.setState({ cartData });
+  }
+
+  componentDidUpdate() {
+    const { cartItems } = this.props;
+
+    const cartData = calculateCartData(cartItems);
+
+    if (!deepCompare(this.state.cartData, cartData)) {
+      this.setState({ cartData });
+    }
   }
 
   render() {
     const { cartItems } = this.props;
-
-    let totalPrice = 0;
-    let totalItems = 0;
+    const { totalPrice, totalItems } = this.state.cartData;
 
     if (cartItems.length === 0) {
       return (
@@ -51,42 +69,17 @@ class Cart extends React.Component {
           <p className="cart__title">Cart</p>
 
           <div className="cart__container">
-            <div className="cart__items">
-              {cartItems.map((current) => {
-                totalPrice += current.quantity * current.price;
-                totalItems += current.quantity;
+            <CartItems items={cartItems} />
 
-                return (
-                  <Item
-                    key={current.id}
-                    id={current.id}
-                    name={current.name}
-                    price={current.price}
-                    quantity={current.quantity}
-                  />
-                );
-              })}
-            </div>
-
-            <div className="cart__check">
-              <p className="cart__total-items">Items: {totalItems}</p>
-              <p className="cart__total-price">Total: ${totalPrice}</p>
-              <MotionButton
-                onClick={this.handleCheckout}
-                className="cart__checkout-btn"
-              >
-                CHECKOUT
-              </MotionButton>
-            </div>
+            <CartCheckout
+              totalPrice={totalPrice}
+              totalItems={totalItems}
+              handleCheckout={this.handleCheckout}
+            />
           </div>
         </div>
 
-        <div className={`modal__wrapper ${this.state.modal ? "" : "hide"}`}>
-          <div className="modal-checkout">
-            <h2 className="modal__title">Checkout</h2>
-            <MotionButton className="modal__btn">BUY</MotionButton>
-          </div>
-        </div>
+        <Modal isEnabled={this.state.modal} />
       </>
     );
   }

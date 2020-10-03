@@ -61,7 +61,7 @@ export default class App extends React.PureComponent {
   handleDecrease(id) {
     const { cart } = this.state;
 
-    cart.forEach((current, index) => {
+    cart.forEach((current) => {
       if (current.id === id && current.quantity > 0) {
         current.quantity--;
       }
