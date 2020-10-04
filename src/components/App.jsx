@@ -7,12 +7,28 @@ export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { cart: [], productsNumber: 0 };
+    this.state = { cart: [], productsNumber: 0, modalId: -1 };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleIncrease = this.handleIncrease.bind(this);
     this.handleDecrease = this.handleDecrease.bind(this);
     this.handleProductsNumber = this.handleProductsNumber.bind(this);
+    this.handleModalProduct = this.handleModalProduct.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleModalProduct(id) {
+    this.setState({ modalId: id });
+
+    // disable scroll
+    document.body.classList.add("stop-scrolling");
+  }
+
+  handleCloseModal() {
+    this.setState({ modalId: -1 });
+
+    // enable scroll
+    document.body.classList.remove("stop-scrolling");
   }
 
   // handle click of 'add to card' button of the product's card
@@ -87,6 +103,9 @@ export default class App extends React.PureComponent {
           handleProductsNumber: this.handleProductsNumber,
           cartItems: this.state.cart,
           productsNumber: this.state.productsNumber,
+          handleModalProduct: this.handleModalProduct,
+          modalId: this.state.modalId,
+          handleCloseModal: this.handleCloseModal,
         }}
       >
         <Navigation />

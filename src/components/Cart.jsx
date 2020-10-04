@@ -1,7 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
 import { WithContext } from "./WithContext";
-import MotionButton from "./MotionButton";
 import Modal from "./Modal";
 import CartItems from "./CartItems";
 import { deepCompare } from "../compare2Objs";

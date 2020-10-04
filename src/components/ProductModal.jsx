@@ -1,19 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import "../sass/product-modal.scss";
+import { WithContext } from "./WithContext";
+import exitIcon from "../img/cancel.png";
 
 function ProductModal(props) {
-  const { isEnabled, id, imgUrl, name, price, handleClick } = props;
-
-  useEffect(() => {
-    document.addEventListener("click", (event) => {
-      console.log(event.target);
-    });
-  });
+  const { id, imgUrl, name, price, handleClick, handleCloseModal } = props;
 
   return (
-    <div className={`product-modal__wrapper ${isEnabled ? "showing" : ""}`}>
+    <div className="product-modal__wrapper">
       <div className="product-modal" data-id={id}>
+        <img
+          className="product-modal__exit"
+          src={exitIcon}
+          alt="close"
+          onClick={handleCloseModal}
+        />
+
         <img className="product-modal__img" src={imgUrl} alt={name} />
 
         <div className="product-modal__container">
@@ -29,7 +32,10 @@ function ProductModal(props) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="product__buy-btn product-modal__buy-btn"
-            onClick={() => handleClick(id, name, price)}
+            onClick={() => {
+              handleClick(id, name, price);
+              handleCloseModal();
+            }}
           >
             ADD TO CART
           </motion.button>
@@ -39,4 +45,4 @@ function ProductModal(props) {
   );
 }
 
-export default ProductModal;
+export default WithContext(ProductModal);

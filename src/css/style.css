@@ -18,6 +18,11 @@
   align-items: center;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 .store {
   width: 100%;
   display: block;
