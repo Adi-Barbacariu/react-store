@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
-import image from "../img/pexels-cottonbro-4066293.jpg";
 import { WithContext } from "./WithContext";
 import { motion } from "framer-motion";
 
@@ -10,7 +9,7 @@ function Product(props) {
   return (
     <motion.div animate={{ scale: 1.02 }} transition={{ duration: 0.5 }}>
       <div className="product" data-id={id}>
-        <img className="product__img" src={imgUrl} alt="product_img" />
+        <img className="product__img" src={imgUrl} alt={name} />
         <div className="container">
           <p className="product__name">{name}</p>
           <p className="product__price">${price}</p>

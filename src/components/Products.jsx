@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
 import Product from "./Product";
+import ProductModal from "./ProductModal";
 
 class Products extends React.Component {
   constructor(props) {
