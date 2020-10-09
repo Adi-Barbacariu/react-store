@@ -11,47 +11,36 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, cartData: { totalPrice: 0, totalItems: 0 } };
+    this.state = {};
   }
 
-  handleCheckout = () => {
-    this.setState((state) => {
-      return {
-        modal: !state.modal,
-      };
-    });
-  };
-
   componentDidMount() {
+    const { handleCheckout, cartItems, handleCartData } = this.props;
+
     document.addEventListener("click", (event) => {
-      if (
-        this.state.modal &&
-        event.target.classList.contains("modal__wrapper")
-      ) {
-        this.handleCheckout();
+      if (event.target.classList.contains("modal__wrapper")) {
+        handleCheckout();
       }
     });
 
-    const { cartItems } = this.props;
-
     const cartData = calculateCartData(cartItems);
 
-    this.setState({ cartData });
+    handleCartData(cartData);
   }
 
   componentDidUpdate() {
-    const { cartItems } = this.props;
+    const { cartItems, handleCartData, cartData } = this.props;
 
-    const cartData = calculateCartData(cartItems);
+    const newCartData = calculateCartData(cartItems);
 
-    if (!deepCompare(this.state.cartData, cartData)) {
-      this.setState({ cartData });
+    if (!deepCompare(cartData, newCartData)) {
+      handleCartData(newCartData);
     }
   }
 
   render() {
-    const { cartItems } = this.props;
-    const { totalPrice, totalItems } = this.state.cartData;
+    const { cartItems, handleCheckout, cartModal, cartData } = this.props;
+    const { totalPrice, totalItems } = cartData;
 
     if (cartItems.length === 0) {
       return (
@@ -73,12 +62,12 @@ class Cart extends React.Component {
             <CartCheckout
               totalPrice={totalPrice}
               totalItems={totalItems}
-              handleCheckout={this.handleCheckout}
+              handleCheckout={handleCheckout}
             />
           </div>
         </div>
 
-        <Modal isEnabled={this.state.modal} />
+        <Modal isEnabled={cartModal} />
       </>
     );
   }

@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-constructor */
 import React from "react";
 import Header from "./Header";
 import Products from "./Products";
@@ -11,17 +10,15 @@ class Store extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { input: "", items: [] };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.state = {};
   }
 
   async componentDidMount() {
-    const { handleProductsNumber } = this.props;
+    const { handleProductsNumber, handleFetchItems } = this.props;
 
     this.setState({ loading: true });
 
-    // set timeout is used for UX, slowing the data fetching with 2 seconds
+    // set timeout is used for UX, it slows down the data fetching with 2 seconds
     setTimeout(async () => {
       const res = await fetch("http://localhost:4000/items");
 
@@ -29,7 +26,9 @@ class Store extends React.Component {
 
       handleProductsNumber(data.length);
 
-      this.setState({ items: data, loading: false });
+      handleFetchItems(data);
+
+      this.setState({ loading: false });
     }, 2000);
   }
 
@@ -37,13 +36,9 @@ class Store extends React.Component {
     return arr.filter((current) => current.name.includes(input.toLowerCase()));
   }
 
-  handleInputChange(event) {
-    this.setState({ input: event.target.value });
-  }
-
   render() {
-    let { input, items } = this.state;
-    const { handleProductsNumber } = this.props;
+    let { items } = this.props;
+    const { handleProductsNumber, input, handleInputChange } = this.props;
 
     if (input !== "") {
       items = this.filterItems(items, input);
@@ -53,7 +48,7 @@ class Store extends React.Component {
 
     return (
       <div className="store">
-        <Header handleInputChange={this.handleInputChange} />
+        <Header handleInputChange={handleInputChange} />
         <ProductsWithLoading
           isLoading={this.state.loading}
           input={this.state.input}

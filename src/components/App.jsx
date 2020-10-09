@@ -7,7 +7,15 @@ export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { cart: [], productsNumber: 0, modalId: -1 };
+    this.state = {
+      items: [],
+      cart: [],
+      productsNumber: 0,
+      modalId: -1,
+      input: "",
+      cartModal: false,
+      cartData: { totalPrice: 0, totalItems: 0 },
+    };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleIncrease = this.handleIncrease.bind(this);
@@ -15,6 +23,30 @@ export default class App extends React.PureComponent {
     this.handleProductsNumber = this.handleProductsNumber.bind(this);
     this.handleModalProduct = this.handleModalProduct.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFetchItems = this.handleFetchItems.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
+    this.handleCartData = this.handleCartData.bind(this);
+  }
+
+  handleCartData(cartData) {
+    this.setState({ cartData });
+  }
+
+  handleCheckout() {
+    this.setState((state) => {
+      return {
+        cartModal: !state.cartModal,
+      };
+    });
+  }
+
+  handleFetchItems(items) {
+    this.setState({ items });
+  }
+
+  handleInputChange(event) {
+    this.setState({ input: event.target.value });
   }
 
   handleModalProduct(id) {
@@ -106,6 +138,14 @@ export default class App extends React.PureComponent {
           handleModalProduct: this.handleModalProduct,
           modalId: this.state.modalId,
           handleCloseModal: this.handleCloseModal,
+          input: this.state.input,
+          handleInputChange: this.handleInputChange,
+          items: this.state.items,
+          handleFetchItems: this.handleFetchItems,
+          cartModal: this.state.cartModal,
+          handleCheckout: this.handleCheckout,
+          cartData: this.state.cartData,
+          handleCartData: this.handleCartData,
         }}
       >
         <Navigation />
