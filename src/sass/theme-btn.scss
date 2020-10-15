@@ -1,5 +1,18 @@
 .theme-btn {
   position: absolute;
+  width: 110px;
   top: 1.4rem;
   left: 0.4rem;
+  font-size: 12px;
+  padding: 4px 8px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  border-radius: 1.5px;
+  cursor: pointer;
+  transition: transform linear 0.1s;
+}
+
+.theme-btn:hover {
+  transform: translateY(-1px);
 }

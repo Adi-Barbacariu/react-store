@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Navigation from "./Navigation";
 import FunctionsContext from "../context";
 import ThemeButton from "./ThemeButton";
-import { enableDarkTheme, enableLightTheme } from "../enableDarkTheme";
+import { enableDarkTheme, enableLightTheme } from "../enableTheme";
 
 export default class App extends React.PureComponent {
   constructor(props) {
@@ -173,7 +173,7 @@ export default class App extends React.PureComponent {
           handleChangeTheme: this.handleChangeTheme,
         }}
       >
-        <ThemeButton />
+        <ThemeButton theme={this.state.theme} />
         <Navigation />
         <Footer />
       </FunctionsContext.Provider>
