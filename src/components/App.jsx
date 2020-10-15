@@ -2,6 +2,8 @@ import React from "react";
 import Footer from "./Footer";
 import Navigation from "./Navigation";
 import FunctionsContext from "../context";
+import ThemeButton from "./ThemeButton";
+import { enableDarkTheme, enableLightTheme } from "../enableDarkTheme";
 
 export default class App extends React.PureComponent {
   constructor(props) {
@@ -15,6 +17,7 @@ export default class App extends React.PureComponent {
       input: "",
       cartModal: false,
       cartData: { totalPrice: 0, totalItems: 0 },
+      theme: "light",
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -28,6 +31,17 @@ export default class App extends React.PureComponent {
     this.handleCheckout = this.handleCheckout.bind(this);
     this.handleCartData = this.handleCartData.bind(this);
     this.enableClickEventOnProduct = this.enableClickEventOnProduct.bind(this);
+    this.handleChangeTheme = this.handleChangeTheme.bind(this);
+  }
+
+  handleChangeTheme() {
+    if (this.state.theme === "light") {
+      this.setState({ theme: "dark" });
+      enableDarkTheme();
+    } else {
+      this.setState({ theme: "light" });
+      enableLightTheme();
+    }
   }
 
   enableClickEventOnProduct(event, product) {
@@ -156,8 +170,10 @@ export default class App extends React.PureComponent {
           cartData: this.state.cartData,
           handleCartData: this.handleCartData,
           enableClickEventOnProduct: this.enableClickEventOnProduct,
+          handleChangeTheme: this.handleChangeTheme,
         }}
       >
+        <ThemeButton />
         <Navigation />
         <Footer />
       </FunctionsContext.Provider>
