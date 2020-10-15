@@ -14,11 +14,7 @@ class Products extends React.Component {
 
     products.forEach((current) => {
       current.addEventListener("click", (e) => {
-        if (e.target.nodeName !== "BUTTON") {
-          const id = current.getAttribute("data-id");
-
-          this.props.handleModalProduct(id);
-        }
+        this.props.enableClickEventOnProduct(e, current);
       });
     });
   }

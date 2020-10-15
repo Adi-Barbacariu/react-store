@@ -27,6 +27,15 @@ export default class App extends React.PureComponent {
     this.handleFetchItems = this.handleFetchItems.bind(this);
     this.handleCheckout = this.handleCheckout.bind(this);
     this.handleCartData = this.handleCartData.bind(this);
+    this.enableClickEventOnProduct = this.enableClickEventOnProduct.bind(this);
+  }
+
+  enableClickEventOnProduct(event, product) {
+    if (event.target.nodeName !== "BUTTON") {
+      const id = product.getAttribute("data-id");
+
+      this.handleModalProduct(id);
+    }
   }
 
   handleCartData(cartData) {
@@ -146,6 +155,7 @@ export default class App extends React.PureComponent {
           handleCheckout: this.handleCheckout,
           cartData: this.state.cartData,
           handleCartData: this.handleCartData,
+          enableClickEventOnProduct: this.enableClickEventOnProduct,
         }}
       >
         <Navigation />

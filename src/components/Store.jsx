@@ -13,6 +13,10 @@ class Store extends React.Component {
     this.state = {};
   }
 
+  filterItems(arr, input) {
+    return arr.filter((current) => current.name.includes(input.toLowerCase()));
+  }
+
   async componentDidMount() {
     const { handleProductsNumber, handleFetchItems } = this.props;
 
@@ -32,8 +36,14 @@ class Store extends React.Component {
     }, 2000);
   }
 
-  filterItems(arr, input) {
-    return arr.filter((current) => current.name.includes(input.toLowerCase()));
+  componentDidUpdate() {
+    const products = Array.from(document.querySelectorAll(".product"));
+
+    products.forEach((current) => {
+      current.addEventListener("click", (e) => {
+        this.props.enableClickEventOnProduct(e, current);
+      });
+    });
   }
 
   render() {
